@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IpPools extends Model
+class IpPool extends Model
 {
     //
 }
