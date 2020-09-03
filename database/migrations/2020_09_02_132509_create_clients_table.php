@@ -23,7 +23,7 @@ class CreateClientsTable extends Migration
             $table->float('credit')->default(0)->index();
             $table->boolean('state')->default(0)->index();
             $table->boolean('hide')->default(0);
-            $table->unsignedInteger('tarif_id')->nullable()->index();
+            $table->unsignedInteger('tariff_id')->nullable()->index();
             $table->unsignedInteger('policer_id')->nullable();
             $table->unsignedInteger('block_id')->nullable();
             $table->unsignedInteger('contract_id')->nullable();
