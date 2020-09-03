@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->id('id');
             $table->string('username')->index();
             $table->string('password');
-            $table->string('fullname')->default("")->index();
+            $table->string('full_name')->default("")->index();
             $table->string('email')->default("");
             $table->float('deposit')->default(0)->index();
             $table->float('credit')->default(0)->index();
