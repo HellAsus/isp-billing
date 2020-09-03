@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Customers extends Model
 {
     use SoftDeletes;
     

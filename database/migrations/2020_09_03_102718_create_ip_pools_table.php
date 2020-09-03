@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShapersTable extends Migration
+class CreateIpPoolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateShapersTable extends Migration
      */
     public function up()
     {
-        Schema::create('shapers', function (Blueprint $table) {
+        Schema::create('ip_pools', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name');
-            $table->unsignedInteger('speed_in')->default(0);
-            $table->unsignedInteger('speed_out')->default(0);
+            $table->string('network');
+            $table->Integer('count');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateShapersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shapers');
+        Schema::dropIfExists('ip_pools');
     }
 }
