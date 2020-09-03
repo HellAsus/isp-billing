@@ -16,10 +16,11 @@ class CreateTarifsTable extends Migration
         Schema::create('tariffs', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
-            $table->string('full_name')->default("")->index();
-            $table->string('email')->default("");
-            $table->float('ammount')->default(0);
-            $table->unsignedInteger('expired_lens')->default(0);
+            $table->float('ammount');
+            $table->unsignedInteger('expired_lens')->default(30);
+            $table->unsignedInteger('shaper_id')->nullable();
+            $table->text('description')->default("");
+            $table->boolean('is_default')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

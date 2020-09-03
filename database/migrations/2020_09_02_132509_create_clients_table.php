@@ -24,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->boolean('state')->default(0)->index();
             $table->boolean('hide')->default(0);
             $table->unsignedInteger('tariff_id')->nullable()->index();
-            $table->unsignedInteger('policer_id')->nullable();
+            $table->unsignedInteger('shaper_id')->nullable();
             $table->unsignedInteger('block_id')->nullable();
             $table->unsignedInteger('contract_id')->nullable();
             $table->datetime('activate_date')->nullable()->index();
