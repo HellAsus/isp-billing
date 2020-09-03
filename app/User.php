@@ -6,9 +6,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -40,19 +37,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function Street(): HasOne
-    {
-        return $this->hasOne('App\Street', 'id', 'street_id');
-    }
-
-    public function Tariff(): HasOne
-    {
-        return $this->hasOne('App\Tariff', 'id', 'tarif_id');
-    }
-
-    public function Statistics(): HasMany
-    {
-        return $this->hasMany('App\Statistic', 'user_id', 'id');
-    }
+    
 }

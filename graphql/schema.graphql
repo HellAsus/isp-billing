@@ -5,7 +5,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 input LoginInput {
-    username: String! @rules(apply: ["required", "min:3", "max:50"])
+    name: String! @rules(apply: ["required", "min:3", "max:50"])
     password: String! @rules(apply: ["required", "min:3", "max:50"])
 }
 
@@ -22,6 +22,11 @@ type Query {
     me: User @auth
     #users: [User!]! @paginate(defaultCount: 10)
     #user(id: ID @eq): User @find
+    client(id: ID @eq): User @find
+}
+
+type Client {
+    id: ID!
 }
 
 type User @guard {

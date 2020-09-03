@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tariff extends Model
 {
     protected $table = 'tarifs';
 
-    public function users(): BelongsToMany
+    public function client(): HasMany
     {
-        return $this->belongsToMany('App\User', 'tarif_id', 'id');
+        return $this->hasMany('App\User', 'tarif_id', 'id');
     }
 
     public function scopeWhereLike($query, $column, $value)
