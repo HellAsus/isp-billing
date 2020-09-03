@@ -15,9 +15,9 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id('id');
-            $table->string('login')->index();
+            $table->string('username')->index();
             $table->string('password');
-            $table->string('fio')->default("")->index();
+            $table->string('fullname')->default("")->index();
             $table->string('email')->default("");
             $table->float('deposit')->default(0)->index();
             $table->float('credit')->default(0)->index();
@@ -34,6 +34,7 @@ class CreateClientsTable extends Migration
             $table->boolean('is_active')->default(0);
             $table->bigInteger('bytes_in')->nullable()->index();
             $table->bigInteger('bytes_out')->nullable()->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
