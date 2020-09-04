@@ -4,64 +4,44 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-input LoginInput {
-    name: String! @rules(apply: ["required", "min:3", "max:50"])
-    password: String! @rules(apply: ["required", "min:3", "max:50"])
+type Query {
+    customer(id: ID @eq): Customer @find
+    #me: User @auth
+    #users: [User!]! @paginate(defaultCount: 10)
+    user(id: ID @eq): User @find
+    
 }
 
 type Mutation {
-    login(input: LoginInput @spread): AuthPayload! @field(resolver: "Auth\\Login")
+    createCustomer(input: CreateCustomerInput! @spread): Customer @create
+    updateCustomer(input: UpdateCustomerInput! @spread): Customer @update
+    deleteCustomer(id: ID!): Customer @delete
 }
 
-type AuthPayload {
-    user: User @auth
-    token: String
+input CreateCustomerInput {
+    username: String! @rules(apply: ["unique:customers,username"])
+    full_name: String!
+    password: String!
 }
 
-type Query {
-    me: User @auth
-    #users: [User!]! @paginate(defaultCount: 10)
-    #user(id: ID @eq): User @find
-    client(id: ID @eq): User @find
+input UpdateCustomerInput {
+    id: ID!
+    username: String! @rules(apply: ["unique:customers,username"])
+    full_name: String!
+    password: String!
 }
 
-type Client {
+type User {
     id: ID!
 }
 
-type User @guard {
+type Customer {
     id: ID!
     username: String!
-    full_name: String! @rename(attribute: "fio")
+    full_name: String!
+    password: String!
+    email: String!
     deposit: Float!
-    street: Street @hasone
-    online: Boolean! @rename(attribute: "status")
-    hw_addr_1: String! @rename(attribute: "mac")
-    hw_addr_2: String! @rename(attribute: "mac2")
-    hw_addr_3: String! @rename(attribute: "mac3")
-    activation_date: Date! @rename(attribute: "activate_day")
-    expiration_date: Date! @rename(attribute: "exp_date")
-    statistics: Statistics! @hasMany(type: "paginator", defaultCount: 10, maxCount: 100)
-    tariff: Tariff @hasone
-}
-
-type Street {
-    id: ID!
-    name: String!
-    user: User! @belongsToMany
-}
-
-type Tariff {
-    id: ID!
-    name: String!
-    user: User! @belongsToMany
-}
-
-type Statistics {
-    id: ID!
-    tx_data: String! @rename(attribute: "in")
-    rx_data: String! @rename(attribute: "out")
-    ip_addr: String! @rename(attribute: "ip")
-    date: DateTime!
-    user: User! @belongsToMany
+    activation_date: Date!
+    expiration_date: Date!
 }

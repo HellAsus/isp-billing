@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
+    protected $fillable = [
+        'username',
+        'password'
+    ];
+
     use SoftDeletes;
     
     public function Street(): HasOne
