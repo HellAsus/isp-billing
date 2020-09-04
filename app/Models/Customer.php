@@ -11,18 +11,24 @@ class Customer extends Model
 {
     use SoftDeletes;
     
-    public function Street(): HasOne
+    public function tariff(): HasOne
     {
-        return $this->hasOne('App\Models\Street', 'id', 'street_id');
+        return $this->hasOne('App\Models\Tariff');
     }
 
-    public function Tariff(): HasOne
+    public function statistics(): HasMany
     {
-        return $this->hasOne('App\Models\Tariff', 'id', 'tarif_id');
+        return $this->hasMany('App\Models\CustomerStatistics');
     }
 
-    public function Statistics(): HasMany
+    public function shaper(): HasOne
     {
-        return $this->hasMany('App\Models\Statistic', 'user_id', 'id');
+        return $this->hasOne('App\Models\Shaper');
     }
+
+    public function phone(): HasMany
+    {
+        return $this->hasMany('App\Models\CustomerPhone');
+    }
+
 }
