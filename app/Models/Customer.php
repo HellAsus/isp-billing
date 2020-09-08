@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Customer extends Model
 {
     use SoftDeletes;
-    
+
     public function tariff(): HasOne
     {
         return $this->hasOne('App\Models\Tariff');
@@ -21,6 +21,11 @@ class Customer extends Model
         return $this->hasMany('App\Models\CustomerStatistics');
     }
 
+    public function invoices(): HasMany
+    {
+        return $this->hasMany('App\Models\Invoice');
+    }
+
     public function shaper(): HasOne
     {
         return $this->hasOne('App\Models\Shaper');
@@ -29,6 +34,11 @@ class Customer extends Model
     public function phone(): HasMany
     {
         return $this->hasMany('App\Models\CustomerPhone');
+    }
+
+    public function location(): HasOne
+    {
+        return $this->hasOne('App\Models\CustomerLocation');
     }
 
 }
