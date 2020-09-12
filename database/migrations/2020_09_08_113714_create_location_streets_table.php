@@ -15,7 +15,8 @@ class CreateLocationStreetsTable extends Migration
     {
         Schema::create('location_streets', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('location_street_types_id');
+            $table->unsignedInteger('location_street_types_id')->default(0);
+            $table->unsignedInteger('location_district_id');
             $table->string('name');
             $table->timestamps();
         });

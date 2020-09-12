@@ -16,6 +16,7 @@ class CreateLocationDistrictsTable extends Migration
         Schema::create('location_districts', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedInteger('location_locality_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
