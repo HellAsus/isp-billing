@@ -6,6 +6,7 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 
 type Query {
     customer(id: ID @eq): Customer @find
+    customers: [Customer!]! @paginate(defaultCount: 10)
     #me: User @auth
     #users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
