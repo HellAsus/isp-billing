@@ -37,6 +37,7 @@ Route::get('/', function () {
 });
 
 Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout');
 /* Route::post('register', 'Auth\RegisterController@register');
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
