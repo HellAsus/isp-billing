@@ -26,27 +26,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', function (Request $request) {
     
     $request->validate([
-        'username' => 'required',
+        'email' => 'required',
         'password' => 'required',
-        'device_name' => 'required',
+        //'device_name' => 'required',
     ]);
 
-    $credentials = $request->only('username', 'password');
+    $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-        $user = User::where('username', $request->username)->first();
+        $user = User::where('email', $request->email)->first();
 
-        return $user->createToken($request->device_name)->plainTextToken;
+        return $user->createToken($request->email)->plainTextToken;
         
     } else {
         throw ValidationException::withMessages([
-            'username' => ['The provided credentials are incorrect.'],
+            'email' => ['The provided credentials are incorrect.'],
         ]);
     }
 
-    $user = User::where('username', $request->username)->first();
+    /* $user = User::where('email', $request->email)->first();
 
-    return $user->createToken($request->device_name)->plainTextToken;
+    return $user->createToken($request->email)->plainTextToken; */
     
 });
 

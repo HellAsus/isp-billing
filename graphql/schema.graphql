@@ -40,9 +40,11 @@ type Customer {
     id: ID!
     username: String!
     full_name: String!
+    ip: String!
     password: String!
     email: String!
     deposit: Float!
+    state: Boolean!
     activation_date: Date!
     expiration_date: Date!
 }
