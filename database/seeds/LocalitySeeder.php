@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{LocationLocality, LocationDistrict, LocationStreet, LocationHouse};
+use App\Models\{LocationLocality, LocationDistrict};
 use Illuminate\Database\Seeder;
 
 class LocalitySeeder extends Seeder

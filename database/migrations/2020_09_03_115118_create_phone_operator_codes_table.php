@@ -16,7 +16,8 @@ class CreatePhoneOperatorCodesTable extends Migration
         Schema::create('phone_operator_codes', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
-            $table->Integer('code');
+            $table->string('code', 10);
+            $table->unsignedInteger('phone_country_code_id');
             $table->timestamps();
         });
     }

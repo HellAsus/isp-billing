@@ -16,7 +16,7 @@ class CreatePhoneCountryCodesTable extends Migration
         Schema::create('phone_country_codes', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
-            $table->Integer('code');
+            $table->string('code', 10);
             $table->timestamps();
         });
     }

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class PhoneOperatorCode extends Model
+class Block extends Model
 {
-    public function country(): HasOne
+    public function customer(): HasOne
     {
-        return $this->HasOne('App\Models\PhoneCountryCode');
+        return $this->hasOne('App\Models\Customer');
     }
 }

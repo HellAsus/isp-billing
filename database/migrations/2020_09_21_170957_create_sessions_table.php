@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerStatisticsTable extends Migration
+class CreateSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,19 @@ class CreateCustomerStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_statistics', function (Blueprint $table) {
+        Schema::create('sessions', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedInteger('customer_id')->index();
-            $table->unsignedInteger('tariff_id');
+            $table->ipAddress('nas_ip');
+            $table->ipAddress('customer_ip');
+            $table->macAddress('customer_hw');
             $table->unsignedBigInteger('bytes_in');
             $table->unsignedBigInteger('bytes_out');
-            $table->datetime('start_time')->index();
-            $table->datetime('end_time')->index();
-            $table->integer('duration');
-            $table->string('ip',20)->index();
+            $table->unsignedBigInteger('expired_date');
+            $table->unsignedBigInteger('session_time');
+            $table->dateTime('session_start');
+            $table->unsignedBigInteger('alive');
+            $table->boolean('drop_session')->default(false);
         });
     }
 
@@ -33,6 +36,6 @@ class CreateCustomerStatisticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_statistics');
+        Schema::dropIfExists('sessions');
     }
 }

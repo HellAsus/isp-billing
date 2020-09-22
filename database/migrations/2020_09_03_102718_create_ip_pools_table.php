@@ -16,7 +16,7 @@ class CreateIpPoolsTable extends Migration
         Schema::create('ip_pools', function (Blueprint $table) {
             $table->id('id');
             $table->string('network');
-            $table->Integer('count');
+            $table->integer('count');
             $table->timestamps();
         });
     }

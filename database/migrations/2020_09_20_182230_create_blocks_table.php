@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerLocationsTable extends Migration
+class CreateBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCustomerLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_locations', function (Blueprint $table) {
+        Schema::create('blocks', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedInteger('customer_id')->index();
-            $table->unsignedInteger('location_houses_id');
-            $table->string('apartment');
-            $table->integer('post_code')->default(0);
-            $table->timestamps();
+            $table->smallInteger('lens');
+            $table->smallInteger('increments');
+            $table->boolean('state')->default(false);
+            $table->text('description')->default("");
+            $table->dateTime('unblock');
+            $table->dateTime('date')->NOW();
         });
     }
 
@@ -30,6 +32,6 @@ class CreateCustomerLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_locations');
+        Schema::dropIfExists('customer_blocks');
     }
 }
