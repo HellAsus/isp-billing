@@ -5,24 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Tariff extends Model
 {
     use SoftDeletes;
 
-    public function client(): HasMany
+    public function customers(): HasMany
     {
-        return $this->hasMany('App\User', 'tarif_id', 'id');
+        return $this->hasMany('App\Models\Customer');
     }
 
-    public function scopeWhereLike($query, $column, $value)
+    public function ipPool(): HasOne
     {
-        return $query->where($column, 'like', '%' . $value . '%');
-    }
-
-    public function scopeOrWhereLike($query, $column, $value)
-    {
-        return $query->orWhere($column, 'like', '%' . $value . '%');
+        return $this->hasOne('App\Models\IpPool');
     }
 
 }

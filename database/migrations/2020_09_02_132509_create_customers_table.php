@@ -25,12 +25,12 @@ class CreateCustomersTable extends Migration
             $table->boolean('hide')->default(0);
             $table->unsignedInteger('tariff_id')->nullable()->index();
             $table->unsignedInteger('shaper_id')->nullable();
-            $table->unsignedInteger('block_id')->nullable();
+            $table->unsignedInteger('customer_blocks_id')->nullable();
             $table->unsignedInteger('contract_id')->nullable();
             $table->datetime('activate_date')->nullable()->index();
             $table->datetime('expired_date')->nullable()->index();
             $table->text('description')->default("");
-            $table->string('ip',20)->nullable()->index();
+            $table->ipAddress('ip')->nullable()->index();
             $table->boolean('is_active')->default(0);
             $table->softDeletes();
             $table->timestamps();

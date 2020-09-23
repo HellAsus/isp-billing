@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTarifsTable extends Migration
+class CreateTariffsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,7 @@ class CreateTarifsTable extends Migration
             $table->unsignedInteger('shaper_id')->nullable();
             $table->unsignedInteger('ip_pool_id')->nullable();
             $table->text('description')->default("");
-            $table->boolean('is_default')->default(0);
+            $table->boolean('is_default')->nullable()->unique();
             $table->timestamps();
             $table->softDeletes();
         });

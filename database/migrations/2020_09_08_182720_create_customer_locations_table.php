@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIpPoolsTable extends Migration
+class CreateCustomerLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateIpPoolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ip_pools', function (Blueprint $table) {
+        Schema::create('customer_locations', function (Blueprint $table) {
             $table->id('id');
-            $table->string('network');
-            $table->integer('count');
+            $table->unsignedInteger('customer_id')->index();
+            $table->unsignedInteger('location_houses_id');
+            $table->string('apartment');
+            $table->integer('post_code')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateIpPoolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ip_pools');
+        Schema::dropIfExists('customer_locations');
     }
 }
