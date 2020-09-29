@@ -41,9 +41,14 @@ class Customer extends Model
         return $this->hasOne('App\Models\CustomerLocation');
     }
 
-    public function block(): HasOne
+    public function block(): HasMany
     {
-        return $this->hasOne('App\Models\CustomerBlock');
+        return $this->HasMany('App\Models\CustomerBlock');
+    }
+
+    public function session(): HasOne
+    {
+        return $this->hasOne('App\Models\Session');
     }
 
 }

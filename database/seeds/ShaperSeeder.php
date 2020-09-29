@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Shaper;
 use Illuminate\Database\Seeder;
 
 class ShaperSeeder extends Seeder
@@ -11,6 +12,6 @@ class ShaperSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Shaper::class, 15)->create();
+        factory(Shaper::class, 15)->create();
     }
 }

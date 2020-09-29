@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{Tariff, Shaper, Customer, LocationDistrict, LocationStreet, LocationHouse, CustomerLocation};
+use App\Models\{Tariff, Shaper, Customer, LocationHouse, CustomerLocation};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,14 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TariffSeeder::class);
         $this->call(ShaperSeeder::class);
         $this->call(LocalitySeeder::class);
-
-        LocationDistrict::all()->each(function ($district) {
-            $district->streets()->saveMany(factory(LocationStreet::class, 5)->make());
-        });
-
-        LocationStreet::all()->each(function ($street) {
-            $street->houses()->saveMany(factory(LocationHouse::class, 5)->make());
-        });
 
         $tarifsIds = Tariff::pluck('id')->toArray();
         $shapersIds = Shaper::pluck('id')->toArray();
@@ -45,5 +37,8 @@ class DatabaseSeeder extends Seeder
         });
 
         $this->call(PhonesSeeder::class);
+        $this->call(SessionSeeder::class);
+        $this->call(InvoiceSeeder::class);
+        $this->call(StatisticsSeeder::class);
     }
 }

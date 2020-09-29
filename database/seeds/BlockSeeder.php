@@ -12,9 +12,5 @@ class BlockSeeder extends Seeder
      */
     public function run()
     {
-        $customers = Customer::all();
-        factory(Block::class, 30)->make()->each(function ($block) use ($customers) {
-            
-        });
     }
 }
