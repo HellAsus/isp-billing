@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use App\Models\{Tariff, Shaper, Customer, LocationHouse, CustomerLocation};
 use Illuminate\Database\Seeder;
 
@@ -12,28 +13,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin',
+            'email_verified_at' => now(),
+            'password' => bcrypt('admin'), // password
+        ]);
+
         $this->call(TariffSeeder::class);
         $this->call(ShaperSeeder::class);
         $this->call(LocalitySeeder::class);
 
-        $tarifsIds = Tariff::pluck('id')->toArray();
-        $shapersIds = Shaper::pluck('id')->toArray();
+        $tarifs = Tariff::all();
+        $shapers = Shaper::all();
 
-        factory(Customer::class, 20)->make()->each(function ($customer) use ($tarifsIds, $shapersIds) {
-            $customer->tariff_id = array_rand($tarifsIds);
-            $customer->shaper_id = array_rand($shapersIds);
+        factory(Customer::class, 20)->make()->each(function ($customer) use ($tarifs, $shapers) {
+            $customer->tariff_id = $tarifs->random()->id;
+            $customer->shaper_id = $shapers->random()->id;
             $customer->save();
         });
 
-        $housesIds = LocationHouse::pluck('id')->toArray();
+        $houses = LocationHouse::all();
 
-        Customer::all()->each(function ($customer) use ($housesIds) {
-            $customer->location()->createMany(factory(CustomerLocation::class, 1)
-            ->make()
-            ->each(function ($location) use ($customer, $housesIds) {
+        Customer::all()->each(function ($customer) use ($houses) {
+            $customer->location()->saveMany(factory(CustomerLocation::class, 1)->make()
+            ->each(function ($location) use ($customer, $houses) {
                 $location->customer_id = $customer->id;
-                $location->location_houses_id = array_rand($housesIds);
-            })->toArray());
+                $location->location_houses_id = $houses->random()->id;
+            }));
         });
 
         $this->call(PhonesSeeder::class);
