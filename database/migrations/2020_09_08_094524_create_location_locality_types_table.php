@@ -16,7 +16,6 @@ class CreateLocationLocalityTypesTable extends Migration
         Schema::create('location_locality_types', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

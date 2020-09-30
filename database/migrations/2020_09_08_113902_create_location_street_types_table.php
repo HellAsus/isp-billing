@@ -16,7 +16,6 @@ class CreateLocationStreetTypesTable extends Migration
         Schema::create('location_street_types', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

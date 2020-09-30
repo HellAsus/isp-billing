@@ -1,0 +1,9 @@
+extend type Query {
+    tariff(id: ID @eq): Tariff @find
+    tariffs: [Tariff!]! @all
+}
+
+type Tariff {
+    id: ID!
+    name: String!
+}

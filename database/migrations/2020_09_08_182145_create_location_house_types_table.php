@@ -16,7 +16,6 @@ class CreateLocationHouseTypesTable extends Migration
         Schema::create('location_house_types', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

@@ -19,7 +19,8 @@ class PhonesSeeder extends Seeder
         $customers = Customer::all();
         $countrys = PhoneCountryCode::all();
 
-        factory(CustomerPhone::class, $customers->count())->make()->each(function ($phone) use ($customers, $countrys) {
+        factory(CustomerPhone::class, $customers->count())->make()
+        ->each(function ($phone) use ($customers, $countrys) {
             $phone->customer_id = $customers->random()->id;
             $phone->phone_operator_code_id = $countrys->random()->operators()->first()->id;
             $phone->save();
