@@ -4,47 +4,4 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-type Query {
-    customer(id: ID @eq): Customer @find
-    customers: [Customer!]! @paginate(defaultCount: 10)
-    #me: User @auth
-    #users: [User!]! @paginate(defaultCount: 10)
-    user(id: ID @eq): User @find
-    
-}
-
-type Mutation {
-    createCustomer(input: CreateCustomerInput! @spread): Customer @create
-    updateCustomer(input: UpdateCustomerInput! @spread): Customer @update
-    deleteCustomer(id: ID!): Customer @delete
-}
-
-input CreateCustomerInput {
-    username: String! @rules(apply: ["unique:customers,username"])
-    full_name: String!
-    password: String!
-}
-
-input UpdateCustomerInput {
-    id: ID!
-    username: String! @rules(apply: ["unique:customers,username"])
-    full_name: String!
-    password: String!
-}
-
-type User {
-    id: ID!
-}
-
-type Customer {
-    id: ID!
-    username: String!
-    full_name: String!
-    ip: String!
-    password: String!
-    email: String!
-    deposit: Float!
-    state: Boolean!
-    activation_date: Date!
-    expiration_date: Date!
-}
+#import models/*.graphql
