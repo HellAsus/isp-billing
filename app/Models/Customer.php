@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
@@ -20,11 +21,10 @@ class Customer extends Model
 
     use SoftDeletes;
 
-    public function tariff(): HasOne
+    public function tariff(): BelongsTo
     {
-        return $this->hasOne('App\Models\Tariff');
+        return $this->BelongsTo('App\Models\Tariff');
     }
-
     public function statistics(): HasMany
     {
         return $this->hasMany('App\Models\CustomerStatistics');

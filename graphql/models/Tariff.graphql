@@ -6,4 +6,5 @@ extend type Query {
 type Tariff {
     id: ID!
     name: String!
+    customers: [Customer] @hasMany
 }
