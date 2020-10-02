@@ -21,9 +21,10 @@ input CreateCustomerInput {
 
 input UpdateCustomerInput {
     id: ID!
-    username: String! @rules(apply: ["unique:customers,username"])
-    full_name: String!
-    password: String!
+    username: String @rules(apply: ["unique:customers,username"])
+    full_name: String
+    password: String
+    tariff_id: ID
 }
 
 type User {
@@ -35,6 +36,7 @@ type Customer {
     username: String!
     full_name: String!
     ip: String!
+    tariff_id: ID! @field(resolver: "App\\GraphQL\\Mutations\\CustomerMutator@updateTariff")
     password: String!
     email: String!
     deposit: Float!

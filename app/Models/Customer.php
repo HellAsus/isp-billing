@@ -15,7 +15,8 @@ class Customer extends Model
         'password',
         'deposit',
         'state',
-        'ip'
+        'ip',
+        'tariff_id'
     ];
 
     use SoftDeletes;
