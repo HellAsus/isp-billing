@@ -1,0 +1,14 @@
+extend type Query {
+    session(id: ID @eq): Session @find
+    sessions: [Session!]! @all
+}
+
+type Session {
+    id: ID!
+    customer_id: Int
+    nas_ip: String
+    customer_ip: String
+    customer_hw: String
+    bytes_in: Int
+    bytes_out: Int
+}

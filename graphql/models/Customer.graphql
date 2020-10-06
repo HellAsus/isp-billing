@@ -4,7 +4,7 @@ extend type Query {
     #me: User @auth
     #users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
-    
+
 }
 
 extend type Mutation {
@@ -36,12 +36,16 @@ type Customer {
     username: String!
     full_name: String!
     ip: String!
-    tariff_id: ID! @field(resolver: "App\\GraphQL\\Mutations\\CustomerMutator@updateTariff")
+    tariff_id: ID!
     password: String!
     email: String!
     deposit: Float!
     state: Boolean!
     activation_date: Date!
     expiration_date: Date!
-    tariff: Tariff @hasone
+    phones: [Phone] @hasmany
+    tariff: Tariff @hasOne
+    invoices: [Invoice] @hasmany
+    session: Session @hasOne
+    statistics: [Statistics] @hasmany
 }

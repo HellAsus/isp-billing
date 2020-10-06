@@ -4,16 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CustomerPhone extends Model
 {
-    public function country(): HasOne
+    public function operator(): BelongsTo
     {
-        return $this->hasOne('App\Models\PhoneCountryCode');
-    }
-
-    public function operator(): HasOne
-    {
-        return $this->hasOne('App\Models\PhoneOperatorCode');
+        return $this->BelongsTo('App\Models\PhoneOperatorCode', 'phone_operator_code_id');
     }
 }

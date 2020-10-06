@@ -5,7 +5,7 @@ namespace App\GraphQL\Mutations;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use App\Models\Customer;
-use Exception;
+use App\Exceptions\CustomException;
 
 class CustomerMutator
 {
@@ -25,9 +25,9 @@ class CustomerMutator
     public function updateTariff (Customer $customer)
     {
         if ($customer->tariff_id !== 5) {
-            throw new Exception(
-                'This is the error message',
-                'The reason why this error was thrown, is rendered in the extension output.'
+            throw new CustomException(
+                'Wrong Tarif Id',
+                'SSS'
             );
         }
         return $customer->tariff_id;

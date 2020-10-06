@@ -1,0 +1,16 @@
+extend type Query {
+    statistic(id: ID @eq): Statistics @find
+    statistics: [Statistics!]! @all
+}
+
+type Statistics {
+    id: ID!
+    customer_id: Int
+    tariff_id: Int
+    ip: String
+    duration: Int
+    bytes_in: Int
+    bytes_out: Int
+    start_time: DateTime
+    end_time: DateTime
+}

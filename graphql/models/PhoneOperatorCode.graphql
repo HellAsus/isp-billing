@@ -1,0 +1,6 @@
+type PhoneOperatorCode {
+    id: ID!
+    name: String
+    code: String
+    country: PhoneCountryCode @hasOne
+}

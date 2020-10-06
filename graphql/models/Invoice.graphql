@@ -1,0 +1,14 @@
+extend type Query {
+    invoice(id: ID @eq): Invoice @find
+    invoices: [Invoice!]! @all
+}
+
+type Invoice {
+    id: ID!
+    customer_id: Int
+    deposit: Float
+    credit: Float
+    prev_deposit: Float
+    prev_credit: Float
+    description: String
+}

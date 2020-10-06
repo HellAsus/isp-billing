@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use App\Tariff;
+use App\Models\{Customer, CustomerPhone, PhoneOperatorCode};
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +30,7 @@ use App\Tariff;
 
 
 Route::get('/', function () {
-    return Tariff::whereLike('name', 'Бизнес')
-                ->where('name', '!=', 'Бизнес-S')
-                ->select('id', 'name')
-                ->get();
+    return Customer::where('id', 10)->first()->phones()->first()->operator()->first()->country()->first();
 });
 
 Route::post('login', 'Auth\LoginController@login')->name('login');
@@ -47,7 +44,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 /* Route::post('/login', function(Request $request ){
     $user = $request->user;
     $password = $request->password;
-    
+
 
     if (Auth::attempt([
         'user' => $user,

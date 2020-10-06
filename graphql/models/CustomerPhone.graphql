@@ -1,0 +1,5 @@
+type Phone {
+    id: ID!
+    number: String
+    operator: PhoneOperatorCode @hasOne
+}

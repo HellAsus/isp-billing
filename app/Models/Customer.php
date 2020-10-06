@@ -41,7 +41,7 @@ class Customer extends Model
         return $this->hasOne('App\Models\Shaper');
     }
 
-    public function phone(): HasMany
+    public function phones(): HasMany
     {
         return $this->hasMany('App\Models\CustomerPhone');
     }

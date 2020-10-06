@@ -1,0 +1,5 @@
+type PhoneCountryCode {
+    id: ID!
+    name: String
+    code: String
+}
