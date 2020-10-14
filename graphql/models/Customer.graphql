@@ -9,7 +9,7 @@ extend type Query {
 
 extend type Mutation {
     createCustomer(input: CreateCustomerInput! @spread): Customer @create
-    updateCustomer(input: UpdateCustomerInput! @spread): Customer @update
+    updateCustomer(input: UpdateCustomerInput! @spread): Customer 
     deleteCustomer(id: ID!): Customer @delete
 }
 
@@ -21,7 +21,7 @@ input CreateCustomerInput {
 
 input UpdateCustomerInput {
     id: ID!
-    username: String @rules(apply: ["unique:customers,username"])
+    username: String @rules(apply: ["unique:customers,username"], messages: { unique: "The username has already been taken"})
     full_name: String
     password: String
     tariff_id: ID
@@ -41,6 +41,9 @@ type Customer {
     email: String!
     deposit: Float!
     state: Boolean!
+    hide: Boolean!
+    is_active: Boolean!
+    description: String!
     activation_date: Date!
     expiration_date: Date!
     phones: [Phone] @hasMany
