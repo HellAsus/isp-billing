@@ -43,9 +43,10 @@ type Customer {
     state: Boolean!
     activation_date: Date!
     expiration_date: Date!
-    phones: [Phone] @hasmany
-    tariff: Tariff @hasOne
-    invoices: [Invoice] @hasmany
-    session: Session @hasOne
-    statistics: [Statistics] @hasmany
+    phones: [Phone] @hasMany
+    tariff: Tariff @belongsTo
+    invoices: [Invoice] @hasMany
+    session: Session @hasMany
+    statistics: [Statistics] @hasMany
+    location: Location @HasOne
 }

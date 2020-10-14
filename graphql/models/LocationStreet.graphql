@@ -1,0 +1,6 @@
+type LocationStreet {
+    id: ID!
+    name: String
+    type: LocationStreetType
+    district: LocationDistrict
+}

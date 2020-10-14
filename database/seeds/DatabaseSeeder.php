@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             $customer->location()->saveMany(factory(CustomerLocation::class, 1)->make()
             ->each(function ($location) use ($customer, $houses) {
                 $location->customer_id = $customer->id;
-                $location->location_houses_id = $houses->random()->id;
+                $location->location_house_id = $houses->random()->id;
             }));
         });
 

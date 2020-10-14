@@ -1,0 +1,5 @@
+type Location {
+    id: ID!
+    apartment: String
+    house: LocationHouse @belongsTo
+}

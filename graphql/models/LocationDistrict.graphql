@@ -1,0 +1,5 @@
+type LocationDistrict {
+    id: ID!
+    name: String
+    locality: LoacationLocality @belongsTo
+}

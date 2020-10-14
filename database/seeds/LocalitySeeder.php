@@ -37,7 +37,7 @@ class LocalitySeeder extends Seeder
 
         factory(LocationLocality::class, 15)->create()->each(function ($locality) use ($localityTypes) {
             $locality->districts()->saveMany(factory(LocationDistrict::class, 5)->make());
-            $locality->location_locality_types_id = $localityTypes->random()->id;
+            $locality->location_locality_type_id = $localityTypes->random()->id;
             $locality->save();
         });
 
@@ -46,7 +46,7 @@ class LocalitySeeder extends Seeder
         LocationDistrict::all()->each(function ($district) use ($streetTypes) {
             $district->streets()->saveMany(factory(LocationStreet::class, 5)->make()
             ->each(function ($street) use ($streetTypes) {
-                $street->location_street_types_id = $streetTypes->random()->id;
+                $street->location_street_type_id = $streetTypes->random()->id;
             }));
         });
 
@@ -56,7 +56,7 @@ class LocalitySeeder extends Seeder
             $street->houses()->saveMany(factory(LocationHouse::class, 5)->make()
             ->each(function ($house) use ($houseTypes) {
                 if (rand(0,1)) {
-                    $house->location_house_types_id = $houseTypes->random()->id;
+                    $house->location_house_type_id = $houseTypes->random()->id;
                 }
             }));
         });

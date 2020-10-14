@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LocationStreet extends Model
 {
-    public function district(): HasOne
+    public function district(): BelongsTo
     {
-        return $this->HasOne('App\Models\LocationDistrict');
+        return $this->BelongsTo('App\Models\LocationDistrict', 'location_district_id');
     }
 
-    public function type(): HasOne
+    public function type(): BelongsTo
     {
-        return $this->HasOne('App\Models\LocationStreetType');
+        return $this->BelongsTo('App\Models\LocationStreetType', 'location_street_type_id');
     }
 
     public function houses(): HasMany

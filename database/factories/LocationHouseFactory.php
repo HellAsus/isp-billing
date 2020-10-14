@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(LocationHouse::class, function (Faker $faker) {
     return [
-        'name' => $faker->buildingNumber,
+        'number' => $faker->buildingNumber,
     ];
 });

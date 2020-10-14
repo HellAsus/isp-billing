@@ -1,0 +1,4 @@
+type LoacationLocalityType {
+    id: ID!
+    name: String
+}

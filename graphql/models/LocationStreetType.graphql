@@ -1,0 +1,4 @@
+type LocationStreetType {
+    id: ID!
+    name: String
+}

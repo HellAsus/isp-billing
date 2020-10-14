@@ -1,0 +1,6 @@
+type LocationHouse {
+    id: ID!
+    number: String
+    type: LocatioHouseType @hasOne
+    street: LocationStreet @hasOne
+}
