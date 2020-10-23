@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CustomerPhone extends Model
 {
+    protected $fillable = [
+        'number',
+        'phone_operator_code_id',
+    ];
     public function operator(): BelongsTo
     {
-        return $this->BelongsTo('App\Models\PhoneOperatorCode', 'phone_operator_code_id');
+        return $this->belongsTo('App\Models\PhoneOperatorCode', 'phone_operator_code_id');
     }
 }

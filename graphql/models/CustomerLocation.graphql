@@ -3,3 +3,22 @@ type Location {
     apartment: String
     house: LocationHouse @belongsTo
 }
+
+input CreateLocationInput {
+    apartment: String!
+    post_code: Int
+    house_id: ID! @rename(attribute: "location_house_id")
+}
+
+input UpdateLocationInput {
+   id: ID!
+   apartment: String!
+   post_code: Int
+   house_id: ID @rename(attribute: "location_house_id")
+}
+
+input UpdateLocationRelation {
+  create: [CreateLocationInput!]
+  update: [UpdateLocationInput!]
+  delete: [ID!]
+}

@@ -1,3 +1,8 @@
+extend type Mutation {
+    createInvoice(input: CreateInvoiceInput! @spread): Invoice
+    deleteInvoice(id: ID!): Invoice @delete
+}
+
 extend type Query {
     invoice(id: ID @eq): Invoice @find
     invoices: [Invoice!]! @all
@@ -5,10 +10,25 @@ extend type Query {
 
 type Invoice {
     id: ID!
-    customer_id: Int
+    customer_id: ID
     deposit: Float
     credit: Float
     prev_deposit: Float
     prev_credit: Float
     description: String
+}
+
+input CreateInvoiceInput {
+    customer_id: ID
+    user_id: ID
+    deposit: Float
+    credit: Float
+    prev_deposit: Float
+    prev_credit: Float
+    description: String
+}
+
+input UpdateInvoiceRelation {
+  create: [CreateInvoiceInput!]
+  delete: [ID!]
 }
