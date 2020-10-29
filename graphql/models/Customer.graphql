@@ -11,14 +11,18 @@ extend type Mutation {
 
 input CreateCustomerInput {
     username: String! @rules(apply: ["unique:customers,username"])
-    full_name: String!
+    last_name: String
+    first_name: String
+    patronymic: String
     password: String!
 }
 
 input UpdateCustomerInput @validator {
     id: ID!
     username: String
-    full_name: String
+    last_name: String
+    first_name: String
+    patronymic: String
     password: String
     email: String
     description: String
@@ -29,7 +33,9 @@ input UpdateCustomerInput @validator {
 type Customer {
     id: ID!
     username: String!
-    full_name: String!
+    last_name: String!
+    first_name: String!
+    patronymic: String!
     ip: String!
     tariff_id: ID!
     password: String!

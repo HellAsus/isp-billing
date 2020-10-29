@@ -17,7 +17,9 @@ class CreateCustomersTable extends Migration
             $table->id('id');
             $table->string('username')->index();
             $table->string('password');
-            $table->string('full_name')->default("")->index();
+            $table->string('last_name')->default("")->index();
+            $table->string('first_name')->default("");
+            $table->string('patronymic')->default("");
             $table->string('email')->default("");
             $table->float('deposit')->default(0)->index();
             $table->float('credit')->default(0)->index();
