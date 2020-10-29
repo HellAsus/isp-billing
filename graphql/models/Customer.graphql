@@ -15,12 +15,12 @@ input CreateCustomerInput {
     password: String!
 }
 
-input UpdateCustomerInput {
+input UpdateCustomerInput @validator {
     id: ID!
-    username: String #@rules(apply: ["unique:customers,username"], messages: { unique: "The username has already been taken"})
+    username: String
     full_name: String
     password: String
-    email: String @rules(apply: ["email"])
+    email: String
     description: String
     phones: UpdatePhoneRelation
     location: UpdateLocationRelation

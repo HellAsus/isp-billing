@@ -16,7 +16,7 @@
         "laravel/sanctum": "^2.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
-        "nuwave/lighthouse": "^4.16"
+        "nuwave/lighthouse": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
