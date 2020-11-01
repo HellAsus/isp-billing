@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Customer, CustomerPhone, PhoneOperatorCode};
+use App\Models\{Customer, CustomerPhone, LocationLocality, Tariff};
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,9 @@ use App\Models\{Customer, CustomerPhone, PhoneOperatorCode};
 
 
 Route::get('/', function () {
-    return Customer::where('id', 10)->first()->phones()->first()->operator()->first()->country()->first();
+    $ss = Customer::find(1);
+    $ss->session->drop_session = true;
+   return dd($ss->session->push());
 });
 
 Route::post('login', 'Auth\LoginController@login')->name('login');

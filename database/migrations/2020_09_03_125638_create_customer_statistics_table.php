@@ -15,8 +15,8 @@ class CreateCustomerStatisticsTable extends Migration
     {
         Schema::create('customer_statistics', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('customer_id')->index();
-            $table->unsignedInteger('tariff_id');
+            $table->foreignId('customer_id')->index();
+            $table->foreignId('tariff_id');
             $table->unsignedBigInteger('bytes_in');
             $table->unsignedBigInteger('bytes_out');
             $table->datetime('start_time')->index();

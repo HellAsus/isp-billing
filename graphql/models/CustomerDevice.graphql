@@ -1,0 +1,19 @@
+type Device {
+    id: ID!
+    address: String
+}
+
+input CreateDeviceInput {
+    address: String!
+}
+
+input UpdateDeviceInput {
+   id: ID!
+   address: String!
+}
+
+input UpdateDeviceRelation {
+  create: [CreateDeviceInput!]
+  update: [UpdateDeviceInput!]
+  delete: [ID!]
+}

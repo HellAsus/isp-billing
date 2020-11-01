@@ -56,9 +56,31 @@ class Customer extends Model
         return $this->HasMany('App\Models\CustomerBlock');
     }
 
+    public function devices(): HasMany
+    {
+        return $this->HasMany('App\Models\CustomerDevice');
+    }
+
     public function session(): HasOne
     {
         return $this->hasOne('App\Models\Session');
+    }
+
+    public function setTariff(int $id): self
+    {
+        $this->tariff_id = $id;
+        $this->session->drop_session = true;
+        $this->save();
+        return $this;
+    }
+
+    public function dropSession(): self
+    {
+        if ($this->session) {
+            $this->session->drop_session = true;
+            $this->session->push();
+        }
+        return $this;
     }
 
 }

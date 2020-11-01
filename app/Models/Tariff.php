@@ -16,9 +16,20 @@ class Tariff extends Model
         return $this->hasMany('App\Models\Customer');
     }
 
+    public function rules(): HasMany
+    {
+        return $this->hasMany('App\Models\TariffRule');
+    }
+
     public function ipPool(): HasOne
     {
         return $this->hasOne('App\Models\IpPool');
+    }
+
+
+    public function allowedTariffs(): array
+    {
+        return $this->rules()->get()->pluck('next_tariff_id')->toArray();
     }
 
 }

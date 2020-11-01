@@ -15,8 +15,8 @@ class CreateLocationHousesTable extends Migration
     {
         Schema::create('location_houses', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('location_house_type_id')->default(0);
-            $table->unsignedInteger('location_street_id');
+            $table->foreignId('location_house_type_id')->default(0);
+            $table->foreignId('location_street_id');
             $table->string('number');
             $table->timestamps();
         });

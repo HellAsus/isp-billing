@@ -1,6 +1,7 @@
 type Location {
     id: ID!
     apartment: String
+    post_code: Int
     house: LocationHouse @belongsTo
 }
 

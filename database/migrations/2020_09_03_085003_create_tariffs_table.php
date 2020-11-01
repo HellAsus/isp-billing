@@ -18,8 +18,8 @@ class CreateTariffsTable extends Migration
             $table->string('name');
             $table->float('ammount');
             $table->unsignedInteger('expired_lens')->default(30);
-            $table->unsignedInteger('shaper_id')->nullable();
-            $table->unsignedInteger('ip_pool_id')->nullable();
+            $table->foreignId('shaper_id')->nullable();
+            $table->foreignId('ip_pool_id')->nullable();
             $table->text('description')->default("");
             $table->boolean('is_default')->nullable()->unique();
             $table->timestamps();

@@ -17,7 +17,7 @@ class CreatePhoneOperatorCodesTable extends Migration
             $table->id('id');
             $table->string('name');
             $table->string('code', 10);
-            $table->unsignedInteger('phone_country_code_id');
+            $table->foreignId('phone_country_code_id');
             $table->timestamps();
         });
     }

@@ -2,7 +2,8 @@
 
 namespace App\GraphQL\Mutations;
 
-use Illuminate\Support\Facades\Auth;
+use GraphQL\Error\Error;
+use App\Models\{Customer, Tariff};
 
 class ChangeTariff
 {
@@ -12,15 +13,22 @@ class ChangeTariff
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        $customer = Customer::find($args['customerId']);
+        if (!$customer) {
+            throw new Error('User not found');
+        }
+
+        $newTariff = Tariff::find($args['newTariffId']);
+        if (!$newTariff) {
+            throw new Error('Tariff not found');
+        }
+
+        if (in_array($newTariff->id, $customer->tariff->allowedTariffs())) {
+            return $customer->setTariff($newTariff->id);
+        } else {
+            throw new Error('Allowed tariffs not found');
+        }
+
     }
 
-    public function listAllowTariff()
-    {
-        Auth::user()->tarif_id;
-
-
-
-
-    }
 }

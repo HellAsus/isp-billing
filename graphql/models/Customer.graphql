@@ -6,6 +6,7 @@ extend type Query {
 extend type Mutation {
     createCustomer(input: CreateCustomerInput! @spread): Customer @create
     updateCustomer(input: UpdateCustomerInput! @spread): Customer @update
+    changeTariff(customerId: ID!, newTariffId: ID!) : Customer
     deleteCustomer(id: ID!): Customer @delete
 }
 
@@ -28,6 +29,7 @@ input UpdateCustomerInput @validator {
     description: String
     phones: UpdatePhoneRelation
     location: UpdateLocationRelation
+    devices: UpdateDeviceRelation
 }
 
 type Customer {
@@ -48,6 +50,7 @@ type Customer {
     activation_date: Date!
     expiration_date: Date!
     phones: [Phone] @hasMany
+    devices: [Device] @hasMany
     tariff: Tariff @belongsTo
     invoices: [Invoice] @hasMany
     session: Session @hasMany

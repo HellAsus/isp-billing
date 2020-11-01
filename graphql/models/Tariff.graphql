@@ -3,8 +3,41 @@ extend type Query {
     tariffs: [Tariff!]! @all
 }
 
+extend type Mutation {
+    createTariff(input: CreateTariffInput! @spread): Tariff @create
+    updateTariff(input: UpdateTariffInput! @spread): Tariff @update
+    deleteTariff(id: ID!): Tariff @delete
+}
+
 type Tariff {
     id: ID!
+    name: String
+    ammount: Float
+    expired_lens: Int
+    shaper_id: ID
+    ip_pool_id: ID
+    description: String
+    is_default: Boolean
+}
+
+
+input CreateTariffInput {
     name: String!
-    customers: [Customer] @hasMany
+    ammount: Float!
+    expired_lens: Int!
+    shaper_id: ID
+    ip_pool_id: ID
+    description: String
+    is_default: Boolean
+}
+
+input UpdateTariffInput {
+    id: ID!
+    name: String
+    ammount: Float
+    expired_lens: Int
+    shaper_id: ID
+    ip_pool_id: ID
+    description: String
+    is_default: Boolean
 }

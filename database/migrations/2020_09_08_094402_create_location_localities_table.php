@@ -15,7 +15,7 @@ class CreateLocationLocalitiesTable extends Migration
     {
         Schema::create('location_localities', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('location_locality_type_id')->default(0);
+            $table->foreignId('location_locality_type_id')->default(0);
             $table->string('name');
             $table->timestamps();
         });

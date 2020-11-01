@@ -15,8 +15,8 @@ class CreateCustomerLocationsTable extends Migration
     {
         Schema::create('customer_locations', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('customer_id')->index();
-            $table->unsignedInteger('location_house_id');
+            $table->foreignId('customer_id')->index();
+            $table->foreignId('location_house_id');
             $table->string('apartment');
             $table->integer('post_code')->default(0);
             $table->timestamps();

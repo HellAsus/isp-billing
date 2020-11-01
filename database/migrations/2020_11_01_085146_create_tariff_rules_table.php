@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerDevicesTable extends Migration
+class CreateTariffRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCustomerDevicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_devices', function (Blueprint $table) {
+        Schema::create('tariff_rules', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('customer_id')->index();
-            $table->macAddress('address');
-            $table->timestamps();
+            $table->foreignId('tariff_id')->index();
+            $table->foreignId('next_tariff_id');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateCustomerDevicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_devices');
+        Schema::dropIfExists('tariff_rules');
     }
 }

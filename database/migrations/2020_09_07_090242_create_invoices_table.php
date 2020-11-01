@@ -15,8 +15,8 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('customer_id')->index();
-            $table->unsignedInteger('user_id')->index();
+            $table->foreignId('customer_id')->index();
+            $table->foreignId('user_id')->index();
             $table->float('deposit')->default(0);
             $table->float('credit')->default(0);
             $table->float('prev_deposit')->default(0);

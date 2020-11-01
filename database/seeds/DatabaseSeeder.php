@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
         });
 
         $this->call(PhonesSeeder::class);
+        $this->call(DevicesSeeder::class);
         $this->call(SessionSeeder::class);
         $this->call(InvoiceSeeder::class);
         $this->call(StatisticsSeeder::class);

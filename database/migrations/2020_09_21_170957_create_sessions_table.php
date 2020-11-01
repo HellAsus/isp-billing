@@ -15,7 +15,7 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('customer_id')->index();
+            $table->foreignId('customer_id')->index();
             $table->ipAddress('nas_ip');
             $table->ipAddress('customer_ip');
             $table->macAddress('customer_hw');

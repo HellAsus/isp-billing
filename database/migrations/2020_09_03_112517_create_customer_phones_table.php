@@ -15,8 +15,8 @@ class CreateCustomerPhonesTable extends Migration
     {
         Schema::create('customer_phones', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('customer_id');
-            $table->unsignedInteger('phone_operator_code_id');
+            $table->foreignId('customer_id');
+            $table->foreignId('phone_operator_code_id');
             $table->string('number');
             $table->timestamps();
         });

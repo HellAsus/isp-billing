@@ -15,7 +15,7 @@ class CreateBlocksTable extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedInteger('customer_id')->index();
+            $table->foreignId('customer_id')->index();
             $table->smallInteger('lens');
             $table->smallInteger('increments');
             $table->boolean('state')->default(false);

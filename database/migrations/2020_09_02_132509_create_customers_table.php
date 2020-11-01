@@ -25,10 +25,10 @@ class CreateCustomersTable extends Migration
             $table->float('credit')->default(0)->index();
             $table->boolean('state')->default(0)->index();
             $table->boolean('hide')->default(0);
-            $table->unsignedInteger('tariff_id')->nullable()->index();
-            $table->unsignedInteger('shaper_id')->nullable();
-            $table->unsignedInteger('customer_blocks_id')->nullable();
-            $table->unsignedInteger('contract_id')->nullable();
+            $table->foreignId('tariff_id')->nullable()->index();
+            $table->foreignId('shaper_id')->nullable();
+            $table->foreignId('customer_blocks_id')->nullable();
+            $table->foreignId('contract_id')->nullable();
             $table->datetime('activate_date')->nullable()->index();
             $table->datetime('expired_date')->nullable()->index();
             $table->text('description')->default("");
