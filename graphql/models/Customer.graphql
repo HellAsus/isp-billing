@@ -47,8 +47,8 @@ type Customer {
     hide: Boolean!
     is_active: Boolean!
     description: String!
-    activation_date: Date!
-    expiration_date: Date!
+    activation_date: DateTime!
+    expiration_date: DateTime!
     phones: [Phone] @hasMany
     devices: [Device] @hasMany
     tariff: Tariff @belongsTo

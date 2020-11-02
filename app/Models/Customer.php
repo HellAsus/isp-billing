@@ -74,7 +74,7 @@ class Customer extends Model
     public function setTariff(int $id): self
     {
         $this->tariff_id = $id;
-        $this->session->drop_session = true;
+        $this->dropSession();
         $this->save();
         return $this;
     }

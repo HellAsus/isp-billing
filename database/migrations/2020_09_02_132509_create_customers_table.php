@@ -29,8 +29,8 @@ class CreateCustomersTable extends Migration
             $table->foreignId('shaper_id')->nullable();
             $table->foreignId('customer_blocks_id')->nullable();
             $table->foreignId('contract_id')->nullable();
-            $table->datetime('activate_date')->nullable()->index();
-            $table->datetime('expired_date')->nullable()->index();
+            $table->datetime('activation_date')->nullable()->index();
+            $table->datetime('expiration_date')->nullable()->index();
             $table->text('description')->default("");
             $table->ipAddress('ip')->nullable()->index();
             $table->boolean('is_active')->default(0);
