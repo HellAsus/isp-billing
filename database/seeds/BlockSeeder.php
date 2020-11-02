@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{Customer, Block};
+use App\Models\{Customer, CustomerBlock};
 use Illuminate\Database\Seeder;
 
 class BlockSeeder extends Seeder
@@ -12,5 +12,11 @@ class BlockSeeder extends Seeder
      */
     public function run()
     {
+        $customers = Customer::all();
+        factory(CustomerBlock::class, $customers->count()*2)->make()
+        ->each(function ($block) use ($customers) {
+            $block->customer_id = $customers->random()->id;
+            $block->save();
+        });
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlocksTable extends Migration
+class CreateCustomerBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBlocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('blocks', function (Blueprint $table) {
+        Schema::create('customer_blocks', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('customer_id')->index();
             $table->smallInteger('lens');
@@ -21,7 +21,7 @@ class CreateBlocksTable extends Migration
             $table->boolean('state')->default(false);
             $table->text('description')->default("");
             $table->dateTime('unblock');
-            $table->dateTime('date')->NOW();
+            $table->timestamps();
         });
     }
 
@@ -32,6 +32,6 @@ class CreateBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blocks');
+        Schema::dropIfExists('customer_blocks');
     }
 }

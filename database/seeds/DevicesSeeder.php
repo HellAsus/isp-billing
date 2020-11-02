@@ -13,14 +13,10 @@ class DevicesSeeder extends Seeder
     public function run()
     {
         $customers = Customer::all();
-
         factory(CustomerDevice::class, $customers->count())->make()
         ->each(function ($device) use ($customers) {
             $device->customer_id = $customers->random()->id;
             $device->save();
         });
-
-
-
     }
 }

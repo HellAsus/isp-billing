@@ -66,6 +66,11 @@ class Customer extends Model
         return $this->hasOne('App\Models\Session');
     }
 
+    public function activateTariff(int $id): self
+    {
+        return $this;
+    }
+
     public function setTariff(int $id): self
     {
         $this->tariff_id = $id;
