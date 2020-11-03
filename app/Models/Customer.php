@@ -51,7 +51,7 @@ class Customer extends Model
         return $this->hasOne('App\Models\CustomerLocation');
     }
 
-    public function block(): HasMany
+    public function blocks(): HasMany
     {
         return $this->HasMany('App\Models\CustomerBlock');
     }
@@ -66,12 +66,15 @@ class Customer extends Model
         return $this->hasOne('App\Models\Session');
     }
 
-    public function activateTariff(int $id): self
+    public function activateTariff(): Customer
     {
+        $this->deposit = $this->deposit - $this->tariff->ammount;
+        $this->expiration_date = now()->addDays($this->tariff->lens);
+        $this->save();
         return $this;
     }
 
-    public function setTariff(int $id): self
+    public function setTariff(int $id): Customer
     {
         $this->tariff_id = $id;
         $this->dropSession();
@@ -79,7 +82,7 @@ class Customer extends Model
         return $this;
     }
 
-    public function dropSession(): self
+    public function dropSession(): Customer
     {
         if ($this->session) {
             $this->session->drop_session = true;
@@ -88,4 +91,18 @@ class Customer extends Model
         return $this;
     }
 
+    public function isActive(): bool
+    {
+        return $this->expiration_date >= now();
+    }
+
+    public function isOnline(): bool
+    {
+        return empty(!$this->session);
+    }
+
+    public function isBlocked(): bool
+    {
+        return is_null(!$this->block_id);
+    }
 }

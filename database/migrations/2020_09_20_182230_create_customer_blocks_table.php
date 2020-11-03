@@ -18,9 +18,8 @@ class CreateCustomerBlocksTable extends Migration
             $table->foreignId('customer_id')->index();
             $table->smallInteger('lens');
             $table->smallInteger('increments');
-            $table->boolean('state')->default(false);
             $table->text('description')->default("");
-            $table->dateTime('unblock');
+            $table->dateTime('unblock_date');
             $table->timestamps();
         });
     }

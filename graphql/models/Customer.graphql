@@ -6,7 +6,6 @@ extend type Query {
 extend type Mutation {
     createCustomer(input: CreateCustomerInput! @spread): Customer @create
     updateCustomer(input: UpdateCustomerInput! @spread): Customer @update
-    changeTariff(customerId: ID!, newTariffId: ID!) : Customer
     deleteCustomer(id: ID!): Customer @delete
 }
 
@@ -43,13 +42,14 @@ type Customer {
     password: String!
     email: String!
     deposit: Float!
-    state: Boolean!
-    hide: Boolean!
-    is_active: Boolean!
+    is_blocked: Boolean! @method(name: "isBlocked")
+    is_online: Boolean! @method(name: "isOnline")
+    is_active: Boolean! @method(name: "isActive")
     description: String!
     activation_date: DateTime!
     expiration_date: DateTime!
     phones: [Phone] @hasMany
+    blocks: [Block] @hasMany
     devices: [Device] @hasMany
     tariff: Tariff @belongsTo
     invoices: [Invoice] @hasMany

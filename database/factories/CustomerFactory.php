@@ -16,9 +16,7 @@ $factory->define(Customer::class, function (Faker $faker) {
         'email' => $faker->unique()->email,
         'deposit' => $faker->numberBetween(0, 5500),
         'credit' => $faker->numberBetween(0, 5500),
-        'state' => $faker->numberBetween(0, 1),
-        'hide' => $faker->numberBetween(0, 1),
-        'ip' => $faker->ipv4,
+        'static_ip' => $faker->ipv4,
         'description' => $faker->text(100),
     ];
 });

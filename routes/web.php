@@ -30,9 +30,8 @@ use App\Models\{Customer, CustomerPhone, LocationLocality, Tariff};
 
 
 Route::get('/', function () {
-    $ss = Customer::find(1);
-    $ss->session->drop_session = true;
-   return dd($ss->session->push());
+    return now()->diffInDays(now()->addDays(9));
+
 });
 
 Route::post('login', 'Auth\LoginController@login')->name('login');

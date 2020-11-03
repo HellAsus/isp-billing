@@ -1,0 +1,19 @@
+extend type Mutation {
+    blockCustomer(input: CreateBlockInput! @spread): Customer
+}
+
+
+type Block {
+    id: ID!
+    customer_id: ID!
+    lens: Int!
+    description: String
+    created_at: DateTime
+    unblock_date: DateTime
+}
+
+input CreateBlockInput {
+    customer_id: ID!
+    lens: Int!
+    description: String
+}

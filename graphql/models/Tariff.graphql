@@ -6,6 +6,7 @@ extend type Query {
 extend type Mutation {
     createTariff(input: CreateTariffInput! @spread): Tariff @create
     updateTariff(input: UpdateTariffInput! @spread): Tariff @update
+    changeTariff(customerId: ID!, newTariffId: ID!) : Customer
     deleteTariff(id: ID!): Tariff @delete
 }
 
