@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
@@ -66,9 +67,14 @@ class Customer extends Model
         return $this->hasOne('App\Models\Session');
     }
 
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Service')->withTimestamps();
+    }
+
     public function activateTariff(): Customer
     {
-        $this->deposit = $this->deposit - $this->tariff->ammount;
+        $this->deposit = $this->deposit - $this->tariff->price;
         $this->expiration_date = now()->addDays($this->tariff->lens);
         $this->save();
         return $this;

@@ -14,6 +14,5 @@ $factory->define(CustomerBlock::class, function (Faker $faker) {
         'increments' => $lens,
         'description' => $faker->text(100),
         'unblock_date' => $date->addDays($lens)->format('Y-m-d H:i:s'),
-        'description' => $faker->text(100),
     ];
 });

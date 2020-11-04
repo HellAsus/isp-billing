@@ -2,13 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Tariff;
+use App\Models\Service;
 use Faker\Generator as Faker;
 
-$factory->define(Tariff::class, function (Faker $faker) {
+$factory->define(Service::class, function (Faker $faker) {
     return [
-        'name' => $faker->company,
+        'name' => $faker->text(50),
         'price' => $faker->numberBetween(150, 550),
-        'description' => $faker->text(100),
     ];
 });

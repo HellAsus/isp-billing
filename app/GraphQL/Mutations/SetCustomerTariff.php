@@ -5,7 +5,7 @@ namespace App\GraphQL\Mutations;
 use GraphQL\Error\Error;
 use App\Models\{Customer, Tariff};
 
-class ChangeTariff
+class SetCustomerTariff
 {
     /**
      * @param  null  $_

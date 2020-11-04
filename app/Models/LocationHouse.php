@@ -9,7 +9,8 @@ class LocationHouse extends Model
 {
     public function type(): BelongsTo
     {
-        return $this->BelongsTo('App\Models\LocationHouseType' , 'location_house_type_id');
+        return $this->BelongsTo('App\Models\LocationHouseType' , 'location_house_type_id')
+        ->withDefault([ 'name' => '']);
     }
 
     public function street(): BelongsTo

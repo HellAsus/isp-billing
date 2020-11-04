@@ -12,7 +12,7 @@ class TariffSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Tariff::class, 10)->create();
+        factory(Tariff::class, 10)->create();
 
         $tariffs = Tariff::all();
         factory(TariffRule::class, $tariffs->count()*2)->make()

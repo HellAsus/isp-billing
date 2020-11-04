@@ -6,14 +6,14 @@ extend type Query {
 extend type Mutation {
     createTariff(input: CreateTariffInput! @spread): Tariff @create
     updateTariff(input: UpdateTariffInput! @spread): Tariff @update
-    changeTariff(customerId: ID!, newTariffId: ID!) : Customer
+    setCustomerTariff(customerId: ID!, newTariffId: ID!) : Customer
     deleteTariff(id: ID!): Tariff @delete
 }
 
 type Tariff {
     id: ID!
     name: String
-    ammount: Float
+    price: Float
     expired_lens: Int
     shaper_id: ID
     ip_pool_id: ID
@@ -24,7 +24,7 @@ type Tariff {
 
 input CreateTariffInput {
     name: String!
-    ammount: Float!
+    price: Float!
     expired_lens: Int!
     shaper_id: ID
     ip_pool_id: ID
@@ -35,7 +35,7 @@ input CreateTariffInput {
 input UpdateTariffInput {
     id: ID!
     name: String
-    ammount: Float
+    price: Float
     expired_lens: Int
     shaper_id: ID
     ip_pool_id: ID

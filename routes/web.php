@@ -30,7 +30,9 @@ use App\Models\{Customer, CustomerPhone, LocationLocality, Tariff};
 
 
 Route::get('/', function () {
-    return now()->diffInDays(now()->addDays(9));
+    $ss = Customer::find(1);
+
+    return $ss->location->house->type;
 
 });
 

@@ -12,6 +12,7 @@ dist/
 /storage/*.key
 /storage
 /vendor
+./vscode
 .env
 .env.backup
 .phpunit.result.cache
